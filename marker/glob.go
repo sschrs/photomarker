@@ -36,7 +36,7 @@ func Glob(path string) []string {
 
 func ExtCheck(path string) bool {
 	ext := filepath.Ext(path)
-	if ext == ".png" || ext == ".jpg" || ext == ".jpeg" {
+	if ext == ".png" || ext == ".jpg" || ext == ".jpeg" || ext == ".JPG" {
 		return true
 	}
 	return false
