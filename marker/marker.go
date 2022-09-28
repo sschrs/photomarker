@@ -40,3 +40,7 @@ func (marker *Marker) SetSrcFile(path string) {
 		log.Fatalln("Marker photo must be png, jpg or jpeg.")
 	}
 }
+
+func Merge() {
+
+}
