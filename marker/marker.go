@@ -7,6 +7,7 @@ import (
 	"image/color"
 	"log"
 	"os"
+	"path/filepath"
 )
 
 type Marker struct {
@@ -48,7 +49,7 @@ func (marker *Marker) SetSrcFile(path string) {
 
 func (marker *Marker) Merge() {
 	srcImg := Resize(marker.width, marker.height, marker.srcPhoto)
-	for _, photo := range marker.dstPhotos {
+	for i, photo := range marker.dstPhotos {
 		img := GetImage(photo)
 
 		x := marker.x
@@ -62,14 +63,22 @@ func (marker *Marker) Merge() {
 			y = img.Bounds().Size().Y + y - srcImg.Bounds().Size().Y
 		}
 
-		fmt.Println(x, y)
-
 		mask := image.NewUniform(color.Alpha{uint8(float64(255) * marker.opacity)})
 		newImage := image.NewRGBA(image.Rect(0, 0, img.Bounds().Size().X, img.Bounds().Size().Y))
 
 		draw.Draw(newImage, newImage.Bounds(), img, image.Point{0, 0}, draw.Src)
 		draw.DrawMask(newImage, newImage.Bounds(), srcImg, image.Point{-x, -y}, mask, image.Point{-x, -y}, draw.Over)
-		SavePNG(newImage, "deneme.png")
+
+		if !marker.replace {
+			dirPath := filepath.Dir(photo)
+			os.Chdir(dirPath)
+			if err := os.MkdirAll(fmt.Sprintf(marker.outPath), 0777); err != nil {
+				log.Fatalln(err.Error())
+			}
+			fileName := filepath.Base(photo)
+			Save[marker.format](newImage, fmt.Sprintf("%s/%s", marker.outPath, fileName))
+			fmt.Println(fmt.Sprintf("%d-) %s marked", i+1, fileName))
+		}
 
 	}
 }
