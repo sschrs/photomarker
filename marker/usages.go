@@ -9,4 +9,6 @@ var usages = map[string]string{
 	"out":     "If the replace argument is false, it specifies the destination path of the copied photos. Default: marked/",
 	"x":       "Specifies the x coordinate of the photo to be placed. If a negative value is entered, pixels from the lower right corner are counted. Default: -20",
 	"y":       "Specifies the y coordinate of the photo to be placed. If a negative value is entered, pixels from the lower right corner are counted. Default: -20",
+	"dst":     "Destination file or directory",
+	"src":     "Source file to be used for markup",
 }
