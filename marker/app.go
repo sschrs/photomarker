@@ -1,15 +1,9 @@
 package marker
 
-import "log"
+import "fmt"
 
-func Run(args []string) {
-	if len(args) < 3 {
-		log.Fatalln("destination and source path must be given")
-	}
-	dstArg := args[1]
-	srcArg := args[2]
-
-	mrkr := CreateMarkerFromFlags()
-	mrkr.SetSrcFile(srcArg)
-	AddFiles(mrkr, dstArg)
+func Run() {
+	m := CreateMarkerFromFlags()
+	m.Merge()
+	fmt.Println(m)
 }
