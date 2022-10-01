@@ -29,6 +29,7 @@ func AutoSave(img *image.RGBA, path string) {
 
 func SavePNG(img *image.RGBA, path string) {
 	f, err := os.Create(path)
+	defer f.Close()
 	if err != nil {
 		log.Fatalln(err.Error())
 	}
@@ -39,6 +40,7 @@ func SavePNG(img *image.RGBA, path string) {
 
 func SaveJPEG(img *image.RGBA, path string) {
 	f, err := os.Create(path)
+	defer f.Close()
 	if err != nil {
 		log.Fatalln(err.Error())
 	}
