@@ -4,7 +4,8 @@ Photomarker is a simple CLI tool to add watermarks to photos. It allows to mark 
 
 Example usage to add the desired watermark to the photos in the current directory is as follows.
 ```shell
-photomarker -dst=. -src=/Users/sschrs/Desktop/watermark.jpeg -width=100 -height=100 -x=-50 -y=-50 -opacity=0.3 -out=marked_photos/
+photomarker -dst=. -src=watermark.png -width=100 -height=100 -x=-50 -y=-50 
+-opacity=0.3 -out=marked_photos/
 ```
 
 ## Installation
